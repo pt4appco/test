@@ -1,0 +1,11 @@
+#!/bin/bash
+  sudo hostname appkotestinstance
+  sudo apt-get update
+  sudo apt-get install -y mc nginx
+  sudo echo "Instance for Appko is installed" > /var/www/html/index.html
+  sudo apt-get upgrade -y
+  sudo sed -i -e '/^PasswordAuthentication / s/ .*/ yes/' /etc/ssh/sshd_config
+  sudo service sshd reload
+  sudo adduser appko --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password 
+  sudo echo "appko:NewPass22!" | sudo chpasswd
+  sudo curl -s "https://api.telegram.org/bot518612824:AAXXXIZ59wVS6pARG08C1BGyUmZJHYqI/sendMessage?chat_id=139076787&text=Instance+for+Appko+test+is+successfully+deployed"
